@@ -1,6 +1,6 @@
-data class Dollar(override val amount: Int) : Money(amount) {
+data class Dollar(override val amount: Int, val currency: String) : Money(amount) {
     override fun times(multiplier: Int): Money {
-        return Dollar(amount * multiplier)
+        return dollar(amount * multiplier)
     }
 
     override fun equals(other: Any?): Boolean {
@@ -14,5 +14,9 @@ data class Dollar(override val amount: Int) : Money(amount) {
 
     override fun hashCode(): Int {
         return amount
+    }
+
+    fun currency(): String {
+        return currency
     }
 }

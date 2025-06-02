@@ -1,6 +1,6 @@
-data class Franc(override val amount: Int): Money(amount) {
+data class Franc(override val amount: Int, val currency: String) : Money(amount) {
     override fun times(multiplier: Int): Money {
-        return Franc(this.amount * multiplier)
+        return franc(this.amount * multiplier)
     }
 
     override fun equals(other: Any?): Boolean {
@@ -16,4 +16,7 @@ data class Franc(override val amount: Int): Money(amount) {
         return amount
     }
 
+    fun currency(): String {
+        return currency
+    }
 }
