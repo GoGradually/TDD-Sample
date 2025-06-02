@@ -12,11 +12,9 @@ class Money(val amount: Int, val currency: String) : Expression {
         }
     }
 
-    fun plus(money: Money): Sum {
-        return Sum(this, money)
-    }
+    override fun plus(money: Expression): Expression = Sum(this, money)
 
-    fun times(multiplier: Int): Money {
+    fun times(multiplier: Int): Expression {
         return Money(amount * multiplier, currency)
     }
 
@@ -46,5 +44,4 @@ class Money(val amount: Int, val currency: String) : Expression {
     override fun toString(): String {
         return "Money(amount=$amount, currency='$currency')"
     }
-
 }

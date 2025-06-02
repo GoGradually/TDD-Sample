@@ -19,7 +19,6 @@ class MoneyTest {
         assertFalse(Money.dollar(5) == (Money.franc(5)))
     }
 
-
     @Test
     fun `화폐 테스트`() {
         assertEquals("USD", Money.dollar(5).currency())
@@ -33,14 +32,6 @@ class MoneyTest {
         val bank = Bank()
         var reduced = bank.reduce(sum, "USD")
         assertEquals(Money.dollar(10), reduced)
-    }
-
-    @Test
-    fun `plus가 Sum을 반환하는지 테스트`() {
-        val dollar = Money.dollar(5)
-        val sum = dollar.plus(dollar)
-        assertEquals(dollar, sum.augend)
-        assertEquals(dollar, sum.addend)
     }
 
     @Test
@@ -59,4 +50,24 @@ class MoneyTest {
         assertEquals(Money.dollar(1), result)
     }
 
+    @Test
+    fun `서로 다른 통화 더하기 테스트`() {
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val dollar = Money.dollar(5)
+        val franc = Money.franc(10)
+        val result = bank.reduce(dollar.plus(franc), "USD")
+        assertEquals(result, Money.dollar(10))
+    }
+
+    @Test
+    fun `서로 다른 삼중 통화 더하기 테스트`() {
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val fiveDollar = Money.dollar(5)
+        val tenFranc = Money.franc(10)
+        val sevenDollar = Money.franc(7)
+        val result = bank.reduce(fiveDollar.plus(tenFranc).plus(sevenDollar), "USD")
+        assertEquals(Money.dollar(17), result)
+    }
 }
