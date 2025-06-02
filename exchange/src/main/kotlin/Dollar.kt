@@ -1,1 +1,0 @@
-class Dollar(override val amount: Int, override val currency: String) : Money(amount, currency)
