@@ -66,7 +66,7 @@ class MoneyTest {
         bank.addRate("CHF", "USD", 2)
         val fiveDollar = Money.dollar(5)
         val tenFranc = Money.franc(10)
-        val sevenDollar = Money.franc(7)
+        val sevenDollar = Money.dollar(7)
         val result = bank.reduce(fiveDollar.plus(tenFranc).plus(sevenDollar), "USD")
         assertEquals(Money.dollar(17), result)
     }

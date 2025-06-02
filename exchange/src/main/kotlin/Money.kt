@@ -12,11 +12,9 @@ class Money(val amount: Int, val currency: String) : Expression {
         }
     }
 
-    override fun plus(money: Expression): Expression = Sum(this, money)
+    override fun plus(expression: Expression): Expression = Sum(this, expression)
 
-    fun times(multiplier: Int): Expression {
-        return Money(amount * multiplier, currency)
-    }
+    fun times(multiplier: Int): Expression = Money(this.amount * multiplier, currency)
 
     fun currency(): String {
         return currency

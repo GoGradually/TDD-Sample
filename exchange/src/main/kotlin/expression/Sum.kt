@@ -11,7 +11,6 @@ class Sum(val augend: Expression, val addend: Expression) : Expression {
     }
 
     override fun plus(expression: Expression): Expression {
-        return Money.dollar(17)
+        return Sum(this, expression)
     }
-
 }
