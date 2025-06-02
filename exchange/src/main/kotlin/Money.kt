@@ -1,4 +1,7 @@
-open class Money(protected open val amount: Int, open val currency: String) : Expression {
+import expression.Expression
+import expression.Sum
+
+class Money(val amount: Int, val currency: String) : Expression {
     companion object {
         fun dollar(amount: Int): Money {
             return Money(amount, "USD")
@@ -9,8 +12,8 @@ open class Money(protected open val amount: Int, open val currency: String) : Ex
         }
     }
 
-    fun plus(money: Money): Expression {
-        return Money(amount + money.amount, currency)
+    fun plus(money: Money): Sum {
+        return Sum(this, money)
     }
 
     fun times(multiplier: Int): Money {
@@ -21,6 +24,10 @@ open class Money(protected open val amount: Int, open val currency: String) : Ex
         return currency
     }
 
+
+    override fun reduce(to: String): Money {
+        return this
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

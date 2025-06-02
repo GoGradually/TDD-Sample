@@ -1,3 +1,4 @@
+import expression.Sum
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -32,5 +33,21 @@ class MoneyTest {
         val bank = Bank()
         var reduced = bank.reduce(sum, "USD")
         assertEquals(Money.dollar(10), reduced)
+    }
+
+    @Test
+    fun `plus가 Sum을 반환하는지 테스트`() {
+        val dollar = Money.dollar(5)
+        val sum = dollar.plus(dollar)
+        assertEquals(dollar, sum.augend)
+        assertEquals(dollar, sum.addend)
+    }
+
+    @Test
+    fun `reduce가 제대로된 money를 반환하는지 테스트`() {
+        val sum = Sum(Money.dollar(15), Money.dollar(5))
+        val bank = Bank()
+        val reduced = bank.reduce(sum, "USD")
+        assertEquals(Money.dollar(20), reduced)
     }
 }
