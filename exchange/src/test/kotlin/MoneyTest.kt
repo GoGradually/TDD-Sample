@@ -50,4 +50,13 @@ class MoneyTest {
         val reduced = bank.reduce(sum, "USD")
         assertEquals(Money.dollar(20), reduced)
     }
+
+    @Test
+    fun `환전 기능 테스트`() {
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val result = bank.reduce(Money.franc(2), "USD")
+        assertEquals(Money.dollar(1), result)
+    }
+
 }
