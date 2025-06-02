@@ -1,4 +1,4 @@
-open class Money(protected open val amount: Int, open val currency: String) {
+open class Money(protected open val amount: Int, open val currency: String) : Expression {
     companion object {
         fun dollar(amount: Int): Money {
             return Money(amount, "USD")
@@ -9,7 +9,11 @@ open class Money(protected open val amount: Int, open val currency: String) {
         }
     }
 
-    open fun times(multiplier: Int): Money {
+    fun plus(money: Money): Expression {
+        return Money(amount + money.amount, currency)
+    }
+
+    fun times(multiplier: Int): Money {
         return Money(amount * multiplier, currency)
     }
 

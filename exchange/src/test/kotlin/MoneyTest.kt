@@ -24,4 +24,13 @@ class MoneyTest {
         assertEquals("USD", Money.dollar(5).currency())
         assertEquals("CHF", Money.franc(5).currency())
     }
+
+    @Test
+    fun `같은 타입 덧셈 테스트`() {
+        val dollar = Money.dollar(5)
+        var sum = dollar.plus(Money.dollar(5))
+        val bank = Bank()
+        var reduced = bank.reduce(sum, "USD")
+        assertEquals(Money.dollar(10), reduced)
+    }
 }
