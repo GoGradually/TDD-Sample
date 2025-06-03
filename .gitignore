@@ -32,3 +32,8 @@ bin/
 .DS_Store
 /TDD-Sample.iml
 /.idea/**
+/PUnit/.idea/misc.xml
+/PUnit/.idea/modules.xml
+/PUnit/PUnit.iml
+/PUnit/.idea/vcs.xml
+/PUnit/.idea/workspace.xml
